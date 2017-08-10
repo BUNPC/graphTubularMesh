@@ -2,7 +2,7 @@
 % TO DO
 % change nodeEdges to edges throughout
 
-function graphTubularMesh( f, v, Mask, offset )
+function graphTubularMesh( f, v, Mask, offset, filenm )
 
 %%
 % load mesh.mat output from vesSegment
@@ -154,7 +154,11 @@ nodes0 = nodes;
 %%
 nodes = nodes0 + ones(size(nodes,1),1) * offset;
 
-save graph.mat nodes edges seg offset
+if exist('filenm')
+    save(filenm,'nodes','edges','seg','offset');
+else
+    save graph.mat nodes edges seg offset
+end
 
 close( hwait )
 
